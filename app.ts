@@ -285,8 +285,8 @@ function buildResponse(
 
 // =====================  Cache + handler  =====================
 
-const CACHE_TTL_MS = 2500;
-const STALE_THRESHOLD_MS = 30_000;
+const CACHE_TTL_MS = 9000;
+const STALE_THRESHOLD_MS = 60_000;
 
 type CachedSnapshot = { response: PricesResponse; fetchedAt: number };
 
@@ -360,7 +360,7 @@ app.get("/api/prices", async (c) => {
       200,
       {
         "Cache-Control":
-          "public, max-age=0, s-maxage=2, stale-while-revalidate=10",
+          "public, max-age=0, s-maxage=8, stale-while-revalidate=30",
       },
     );
   } catch (err) {
